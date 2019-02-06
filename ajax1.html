@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+</head>
+<title>JSON ajax</title>
+
+<body>
+    <button id="button1">Load user data from internal API</button>
+    <button id="button2">Load user data from external API</button>
+    <div id="content"></div>
+    <script>
+        // for internal API-------------------------------------
+        document.getElementById('button1').addEventListener('click', function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'ajax1.json', true);
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    var users = JSON.parse(xhr.responseText);
+                    var output = '';
+                    for (var i in users) {
+                        output += '<ul>' +
+                            '<li>' + users[i].id + '</li>' +
+                            '<li>' + users[i].name + '</li>' +
+                            '<li>' + users[i].city + '</li>' +
+                            '<li>' + users[i].email + '</li>' +
+                            '</ul>';
+                    }
+                    document.getElementById('content').innerHTML = output;
+                }
+            }
+            xhr.send();
+        })
+
+        // for external API-----------------------------------------------------------
+        document.getElementById('button2').addEventListener('click', loadExternal);
+
+        function loadExternal() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://api.github.com/users', true);
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    var users = JSON.parse(xhr.responseText);
+                    console.log(users);
+
+                    var output = '';
+                    for (var i in users) {
+                        output += '<div id="users"><ul>' +
+                            '<img src="' + users[i].avatar_url + '" width="50" height="50">' +
+                            '<li>' + users[i].id + '</li>' +
+                            '<li>' + users[i].login + '</li>' +
+                            '<li>' + users[i].url + '</li>' +
+                            '</ul></div>';
+                    }
+                    document.getElementById('content').innerHTML = output;
+                }
+            }
+            xhr.send();
+        }
+    </script>
+    <style>
+        li {
+            list-style: none;
+
+        }
+
+        #users {
+            margin: 5px;
+            background-color: #f2f2f2;
+            display: inline-block;
+        }
+    </style>
+</body>
+
+</html>

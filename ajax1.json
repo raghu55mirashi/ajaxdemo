@@ -1,0 +1,19 @@
+[{
+        "id": 1,
+        "name": "raghu",
+        "city": "pune",
+        "email": "raghu@gmail.com"
+    },
+    {
+        "id": 2,
+        "name": "rajesh",
+        "city": "goa",
+        "email": "raj@gmail.com"
+    },
+    {
+        "id": 3,
+        "name": "ayush",
+        "city": "pune",
+        "email": "ayush@gmail.com"
+    }
+]
