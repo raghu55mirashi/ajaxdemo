@@ -1,5 +1,4 @@
 <?php
-
 $con = mysqli_connect('localhost','root','','ajaxdemo');
 $country = $_POST['country'];
 // $country = $_GET['country'];
@@ -12,6 +11,6 @@ if($rows>0){
         while($row = mysqli_fetch_assoc($sel)){
     echo '<option value="'.$row['state_id'].'">' .$row['state_name'].'</option>';
     }
-   
+   //
  } ?>
 </select>
